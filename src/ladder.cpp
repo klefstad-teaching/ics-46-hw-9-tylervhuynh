@@ -44,11 +44,11 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     to_lowercase(end);
     vector<string> ladder;
     if (start == end) {
-        error(start, end, "No word ladder found.\n");
+        error(start, end, "No word ladder found.");
         return ladder;
     }
     if (word_list.find(end) == word_list.end()) {
-        error(start, end, "No word ladder found.\n");
+        error(start, end, "No word ladder found.");
         return ladder;
     }
     queue<vector<string>> ladder_queue;
@@ -74,7 +74,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         }
         visited.insert(level_visited.begin(), level_visited.end());
     }
-    error(start, end, "No word ladder found.\n");
+    error(start, end, "No word ladder found.");
     return {};
 }
 
@@ -88,14 +88,14 @@ void load_words(set<string> & word_list, const string& file_name) {
 
 void print_word_ladder(const vector<string>& ladder) {
     if (ladder.empty()) {
-        cout << "No word ladder found.\n" << endl;
+        error(start, end, "No word ladder found.");
         return;
     }
     cout << "Word ladder found: ";
     for (const string& word : ladder) {
         cout << word << " ";
     }
-    cout << "\n";
+    cout << endl;
 }
 
 void verify_word_ladder() {
