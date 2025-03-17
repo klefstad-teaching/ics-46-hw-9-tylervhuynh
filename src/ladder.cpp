@@ -45,8 +45,8 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     to_lowercase(start);
     to_lowercase(end);
     vector<string> ladder;
-    if (begin_word == end_word) {
-        error("Word ladder could not be created: Begin and end word are equal", begin_word, end_word);
+    if (start == end) {
+        error(start, end, "Word ladder could not be created: Begin and end word are equal");
         return ladder;
     }
     if (word_list.find(end) == word_list.end()) {
