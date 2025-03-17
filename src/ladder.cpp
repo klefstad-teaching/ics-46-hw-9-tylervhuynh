@@ -12,9 +12,7 @@ bool my_assert(bool condition) {
     return condition;
 }
 
-void to_lowercase(string &word) {
-    transform(word.begin(), word.end(), word.begin(), ::tolower);
-}
+void to_lowercase(string &word) {transform(word.begin(), word.end(), word.begin(), ::tolower);}
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
     int len1 = str1.length();
@@ -68,7 +66,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
                 if (is_adjacent(last_word, word) && visited.find(word) == visited.end()) {
                     vector<string> new_ladder = current_ladder;
                     new_ladder.push_back(word);
-                    if (word == end) return new_ladder;
+                    if (word == end) {return new_ladder;}
                     ladder_queue.push(new_ladder);
                     level_visited.insert(word);
                 }
