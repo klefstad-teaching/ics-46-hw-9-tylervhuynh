@@ -2,7 +2,7 @@
 
 
 int main(int argc, char *argv[]) {
-    string filename = "../src/largest.txt";
+    string filename = "../src/small.txt";
     Graph G;
     file_to_graph(filename, G);
     vector<int> previous(G.numVertices, -1);
