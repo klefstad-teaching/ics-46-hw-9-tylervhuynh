@@ -40,42 +40,35 @@ bool is_adjacent(const string& word1, const string& word2) {
 }
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
+    string start = begin_word;
+    string end = end_word;
+    to_lowercase(start);
+    to_lowercase(end);
     vector<string> ladder;
     if (begin_word == end_word) {
         error("Word ladder could not be created: Begin and end word are equal", begin_word, end_word);
         return ladder;
     }
-    string start = begin_word;
-    string end = end_word;
-    to_lowercase(start);
-    to_lowercase(end);
-
     if (word_list.find(end) == word_list.end()) {
         error(start, end, "No ladder found: End word not in dictionary.");
         return ladder;
     }
-
     queue<vector<string>> ladder_queue;
     ladder_queue.push({start});
     set<string> visited;
     visited.insert(start);
-
     while (!ladder_queue.empty()) {
         int level_size = ladder_queue.size();
         set<string> level_visited;
-
         for (int i = 0; i < level_size; ++i) {
             vector<string> current_ladder = ladder_queue.front();
             ladder_queue.pop();
             string last_word = current_ladder.back();
-
             for (const string& word : word_list) {
                 if (is_adjacent(last_word, word) && visited.find(word) == visited.end()) {
                     vector<string> new_ladder = current_ladder;
                     new_ladder.push_back(word);
-
                     if (word == end) return new_ladder;
-                    
                     ladder_queue.push(new_ladder);
                     level_visited.insert(word);
                 }
@@ -83,7 +76,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         }
         visited.insert(level_visited.begin(), level_visited.end());
     }
-
     error(start, end, "No ladder found.");
     return {};
 }
