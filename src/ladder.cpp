@@ -56,9 +56,9 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     set<string> visited;
     visited.insert(start);
     while (!ladder_queue.empty()) {
-        int level_size = ladder_queue.size();
+        int level = ladder_queue.size();
         set<string> level_visited;
-        for (int i = 0; i < level_size; ++i) {
+        for (int i = 0; i < level; ++i) {
             vector<string> current_ladder = ladder_queue.front();
             ladder_queue.pop();
             string last_word = current_ladder.back();
